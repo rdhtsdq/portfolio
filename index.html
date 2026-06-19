@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raditya Syidqi Rusnandar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700;800&display=swap');
+    body { font-family: 'JetBrains Mono', monospace; }
+
+    .hero-split {
+      font-size: clamp(5rem, 18vw, 14rem);
+      line-height: 0.85;
+      letter-spacing: -0.04em;
+    }
+
+    .tag {
+      @apply text-xs tracking-[0.2em] uppercase;
+    }
+
+    .section-num {
+      @apply text-xs text-neutral-600 tracking-widest;
+    }
+
+    .card {
+      border: 1px solid #262626;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .card:hover {
+      border-color: #525252;
+      transform: translateY(-4px);
+    }
+
+    .glitch {
+      position: relative;
+      display: inline-block;
+    }
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+    }
+    .glitch:hover::before {
+      opacity: 0.35;
+      color: #737373;
+      animation: glitch-1 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+      z-index: -1;
+    }
+    .glitch:hover::after {
+      opacity: 0.35;
+      color: #525252;
+      animation: glitch-2 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
+      z-index: -1;
+    }
+
+    @keyframes glitch-1 {
+      0% { clip-path: inset(0 0 90% 0); transform: translate(0); }
+      10% { clip-path: inset(10% 0 80% 0); transform: translate(-3px, 1px); }
+      20% { clip-path: inset(40% 0 50% 0); transform: translate(3px, -1px); }
+      30% { clip-path: inset(70% 0 20% 0); transform: translate(-2px); }
+      40% { clip-path: inset(20% 0 60% 0); transform: translate(2px, 1px); }
+      50% { clip-path: inset(50% 0 30% 0); transform: translate(-1px); }
+      60% { clip-path: inset(80% 0 10% 0); transform: translate(1px, -1px); }
+      70% { clip-path: inset(30% 0 60% 0); transform: translate(-2px, 1px); }
+      80% { clip-path: inset(60% 0 30% 0); transform: translate(2px); }
+      90% { clip-path: inset(10% 0 80% 0); transform: translate(-1px, -1px); }
+      100% { clip-path: inset(0 0 90% 0); transform: translate(0); }
+    }
+    @keyframes glitch-2 {
+      0% { clip-path: inset(90% 0 0 0); transform: translate(0); }
+      10% { clip-path: inset(80% 0 10% 0); transform: translate(3px, -1px); }
+      20% { clip-path: inset(50% 0 40% 0); transform: translate(-3px, 1px); }
+      30% { clip-path: inset(20% 0 70% 0); transform: translate(2px); }
+      40% { clip-path: inset(60% 0 20% 0); transform: translate(-2px, -1px); }
+      50% { clip-path: inset(30% 0 50% 0); transform: translate(1px); }
+      60% { clip-path: inset(10% 0 80% 0); transform: translate(-1px, 1px); }
+      70% { clip-path: inset(70% 0 20% 0); transform: translate(2px, -1px); }
+      80% { clip-path: inset(40% 0 50% 0); transform: translate(-2px); }
+      90% { clip-path: inset(80% 0 10% 0); transform: translate(1px, 1px); }
+      100% { clip-path: inset(90% 0 0 0); transform: translate(0); }
+    }
+
+    [data-aos] { pointer-events: none; }
+    [data-aos].aos-animate { pointer-events: auto; }
+
+    .dot-field-container {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      border-radius: inherit;
+    }
+    .dot-field-container canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .dot-field-container svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .skill-pill {
+      @apply px-3 py-1 text-sm bg-neutral-800 text-neutral-400 rounded-full border border-neutral-700;
+    }
+  </style>
+</head>
+<body class="bg-neutral-950 text-neutral-300 antialiased overflow-x-hidden">
+  <nav class="fixed top-0 w-full bg-neutral-950/90 backdrop-blur border-b border-neutral-800 z-50">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#" class="text-white font-bold tracking-tight text-lg">RS/</a>
+      <div class="flex gap-8 text-sm">
+        <a href="#home" class="text-neutral-400 hover:text-white transition">(01) Home</a>
+        <a href="#about" class="text-neutral-400 hover:text-white transition">(02) About</a>
+        <a href="#skills" class="text-neutral-400 hover:text-white transition">(03) Skills</a>
+        <a href="#projects" class="text-neutral-400 hover:text-white transition">(04) Projects</a>
+        <a href="#contact" class="text-neutral-400 hover:text-white transition">(05) Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <section id="home" class="min-h-screen flex flex-col justify-center px-6 w-full mx-auto bg-neutral-950 pt-16 relative">
+    <div id="dotfield-bg" class="dot-field-container"></div>
+    <div class="flex flex-col justify-center max-w-6xl mx-auto relative">
+      <p class="section-num mb-6 relative z-10" data-aos="fade-right" data-aos-duration="600">(01)</p>
+      <div class="flex flex-col relative z-10">
+        <h1 class="hero-split font-extrabold text-white leading-none -mt-2 md:-mt-4" data-aos="fade-right" data-aos-duration="800" data-aos-delay="100">
+          Rad/itya
+        </h1>
+        <!-- <h1 class="hero-split font-extrabold text-white leading-none -mt-2 md:-mt-4" data-aos="fade-right" data-aos-duration="800" data-aos-delay="200">
+          /Syidqi
+        </h1> -->
+      </div>
+      <div class="flex flex-wrap gap-x-8 gap-y-1 mt-6 relative z-10" data-aos="fade-right" data-aos-duration="600" data-aos-delay="250">
+        <span class="tag text-neutral-500">FULL-STACK ENGINEER</span>
+        <span class="tag text-neutral-500">WEB & MOBILE</span>
+        <span class="tag text-neutral-500">2+ YEARS EXP</span>
+      </div>
+      <p class="text-sm text-neutral-500 max-w-lg mt-8 leading-relaxed relative z-10" data-aos="fade-up" data-aos-duration="600" data-aos-delay="350">
+        Results-driven Full-stack Software Engineer with over 2 years of experience delivering scalable web and mobile applications.
+      </p>
+      <div class="flex gap-4 mt-8 relative z-10" data-aos="fade-up" data-aos-duration="600" data-aos-delay="450">
+        <a href="#contact" class="px-6 py-3 bg-white text-neutral-950 text-sm font-medium hover:bg-neutral-300 transition">Get In Touch</a>
+        <a href="#projects" class="px-6 py-3 border border-neutral-700 text-neutral-400 text-sm font-medium hover:border-white hover:text-white transition">View My Work</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="min-h-screen flex flex-col justify-center px-6 max-w-6xl mx-auto bg-neutral-950 border-t border-neutral-800">
+    <p class="section-num mb-2" data-aos="fade-left" data-aos-duration="600">(02)</p>
+    <h2 class="hero-split font-extrabold text-white leading-none mb-2" data-aos="fade-left" data-aos-duration="800" data-aos-delay="100">
+      ABOUT
+    </h2>
+    <p class="tag text-neutral-500 mb-10" data-aos="fade-left" data-aos-duration="600" data-aos-delay="150">WHO I AM</p>
+    <div class="grid md:grid-cols-2 gap-16">
+      <p class="text-sm text-neutral-500 leading-relaxed" data-aos="fade-right" data-aos-duration="800" data-aos-delay="200">
+        I'm an enthusiastic developer with a profound passion for technology. With over 2 years of experience, I specialize in building scalable web and mobile applications that solve complex business challenges.
+      </p>
+      <p class="text-sm text-neutral-500 leading-relaxed" data-aos="fade-left" data-aos-duration="800" data-aos-delay="300">
+        I focus on creating clean, high-performance code and have proven ability to optimize systems, boost API response times by up to 40%, and reduce bug reports by 25%.
+      </p>
+    </div>
+    <div class="grid grid-cols-3 gap-12 mt-16 border-t border-neutral-800 pt-12">
+      <div data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
+        <p class="text-4xl font-bold text-white">Bandung</p>
+        <p class="tag text-neutral-600 mt-1">Location</p>
+      </div>
+      <div data-aos="fade-up" data-aos-duration="600" data-aos-delay="350">
+        <p class="text-4xl font-bold text-white">2+</p>
+        <p class="tag text-neutral-600 mt-1">Years Experience</p>
+      </div>
+      <div data-aos="fade-up" data-aos-duration="600" data-aos-delay="500">
+        <p class="text-4xl font-bold text-white">Full-stack</p>
+        <p class="tag text-neutral-600 mt-1">Engineer</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="min-h-screen flex flex-col justify-center px-6 max-w-6xl mx-auto bg-neutral-950 border-t border-neutral-800">
+    <p class="section-num mb-2" data-aos="fade-right" data-aos-duration="600">(03)</p>
+    <h2 class="hero-split font-extrabold text-white leading-none mb-2" data-aos="fade-right" data-aos-duration="800" data-aos-delay="100">
+      SKI/LLS
+    </h2>
+    <p class="tag text-neutral-500 mb-12" data-aos="fade-right" data-aos-duration="600" data-aos-delay="150">TECH STACK</p>
+    <div class="grid md:grid-cols-4 gap-6 mb-16">
+      <div class="card p-6 group" data-aos="fade-up" data-aos-duration="700" data-aos-delay="150">
+        <p class="section-num mb-4">(01)</p>
+        <h3 class="text-white font-bold text-lg mb-4">Languages</h3>
+        <div class="space-y-2">
+          <p class="text-xs text-neutral-500">JavaScript</p>
+          <p class="text-xs text-neutral-500">PHP</p>
+          <p class="text-xs text-neutral-500">Dart</p>
+          <p class="text-xs text-neutral-500">Python</p>
+        </div>
+      </div>
+      <div class="card p-6 group" data-aos="fade-up" data-aos-duration="700" data-aos-delay="300">
+        <p class="section-num mb-4">(02)</p>
+        <h3 class="text-white font-bold text-lg mb-4">Frameworks</h3>
+        <div class="space-y-2">
+          <p class="text-xs text-neutral-500">Laravel</p>
+          <p class="text-xs text-neutral-500">Node.js</p>
+          <p class="text-xs text-neutral-500">React.js</p>
+          <p class="text-xs text-neutral-500">Express.js</p>
+          <p class="text-xs text-neutral-500">Flutter</p>
+        </div>
+      </div>
+      <div class="card p-6 group" data-aos="fade-up" data-aos-duration="700" data-aos-delay="450">
+        <p class="section-num mb-4">(03)</p>
+        <h3 class="text-white font-bold text-lg mb-4">Databases</h3>
+        <div class="space-y-2">
+          <p class="text-xs text-neutral-500">MySQL</p>
+        </div>
+      </div>
+      <div class="card p-6 group" data-aos="fade-up" data-aos-duration="700" data-aos-delay="600">
+        <p class="section-num mb-4">(04)</p>
+        <h3 class="text-white font-bold text-lg mb-4">Concepts & Tools</h3>
+        <div class="space-y-2">
+          <p class="text-xs text-neutral-500">REST API</p>
+          <p class="text-xs text-neutral-500">Web Development</p>
+          <p class="text-xs text-neutral-500">Linux Server</p>
+          <p class="text-xs text-neutral-500">SDLC</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-neutral-800 pt-12">
+      <h3 class="tag text-neutral-500 mb-8 text-center">Certifications</h3>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="card p-6 group" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
+          <p class="section-num mb-4">(01)</p>
+          <h4 class="text-white font-bold text-sm mb-2">Basic AI, Machine Learning and Python</h4>
+          <p class="text-xs text-neutral-500">Dicoding — Oct 2024</p>
+        </div>
+        <div class="card p-6 group" data-aos="fade-up" data-aos-duration="600" data-aos-delay="250">
+          <p class="section-num mb-4">(02)</p>
+          <h4 class="text-white font-bold text-sm mb-2">Javascript</h4>
+          <p class="text-xs text-neutral-500">Dicoding — Sep 2023</p>
+        </div>
+        <div class="card p-6 group" data-aos="fade-up" data-aos-duration="600" data-aos-delay="400">
+          <p class="section-num mb-4">(03)</p>
+          <h4 class="text-white font-bold text-sm mb-2">Flutter</h4>
+          <p class="text-xs text-neutral-500">Dicoding — Sep 2022</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="min-h-screen flex flex-col justify-center px-6 max-w-6xl mx-auto bg-neutral-950 border-t border-neutral-800">
+    <p class="section-num mb-2" data-aos="fade-left" data-aos-duration="600">(04)</p>
+    <h2 class="hero-split font-extrabold text-white leading-none mb-2" data-aos="fade-left" data-aos-duration="800" data-aos-delay="100">
+      PROJ/ECTS
+    </h2>
+    <p class="tag text-neutral-500 mb-12" data-aos="fade-left" data-aos-duration="600" data-aos-delay="150">FEATURED WORK</p>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="card p-8 group" data-aos="fade-up" data-aos-duration="700" data-aos-delay="150">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-white font-bold text-lg">CAMS</h3>
+          <span class="text-[10px] px-2 py-1 bg-neutral-800 text-neutral-500 rounded-full tag">Web Development</span>
+        </div>
+        <p class="text-xs text-neutral-500 mb-4 group-hover:text-neutral-300 transition">Internal ERP System for business management</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="skill-pill">Laravel</span>
+          <span class="skill-pill">MySQL</span>
+          <span class="skill-pill">React</span>
+        </div>
+      </div>
+      <div class="card p-8 group" data-aos="fade-up" data-aos-duration="700" data-aos-delay="300">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-white font-bold text-lg">Pinmyloc</h3>
+          <span class="text-[10px] px-2 py-1 bg-neutral-800 text-neutral-500 rounded-full tag">Mobile Development</span>
+        </div>
+        <p class="text-xs text-neutral-500 mb-4 group-hover:text-neutral-300 transition">Mobile attendance app with location tracking</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="skill-pill">Flutter</span>
+          <span class="skill-pill">Node.js</span>
+        </div>
+      </div>
+      <div class="card p-8 group" data-aos="fade-up" data-aos-duration="700" data-aos-delay="150">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-white font-bold text-lg">Pustakaan.ID</h3>
+          <span class="text-[10px] px-2 py-1 bg-neutral-800 text-neutral-500 rounded-full tag">Mobile Development</span>
+        </div>
+        <p class="text-xs text-neutral-500 mb-4 group-hover:text-neutral-300 transition">Mobile Library App with modern design</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="skill-pill">Flutter</span>
+          <span class="skill-pill">UI/UX Design</span>
+        </div>
+      </div>
+      <div class="card p-8 group" data-aos="fade-up" data-aos-duration="700" data-aos-delay="300">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-white font-bold text-lg">MyLib</h3>
+          <span class="text-[10px] px-2 py-1 bg-neutral-800 text-neutral-500 rounded-full tag">Mobile Development</span>
+        </div>
+        <p class="text-xs text-neutral-500 mb-4 group-hover:text-neutral-300 transition">Static Mobile library application</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="skill-pill">Flutter</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="min-h-screen flex flex-col justify-center px-6 max-w-6xl mx-auto bg-neutral-950 border-t border-neutral-800">
+    <p class="section-num mb-2" data-aos="fade-right" data-aos-duration="600">(05)</p>
+    <h2 class="hero-split font-extrabold text-white leading-none mb-2" data-aos="fade-right" data-aos-duration="800" data-aos-delay="100">
+      CONT/ACT
+    </h2>
+    <p class="tag text-neutral-500 mb-10" data-aos="fade-right" data-aos-duration="600" data-aos-delay="150">LET'S WORK TOGETHER</p>
+    <div class="grid md:grid-cols-2 gap-16">
+      <div class="space-y-6" data-aos="fade-right" data-aos-duration="800" data-aos-delay="200">
+        <p class="text-sm text-neutral-500 leading-relaxed">
+          I'm always interested in new opportunities and exciting projects. Feel free to reach out if you'd like to work together!
+        </p>
+        <div class="space-y-4">
+          <div>
+            <p class="tag text-neutral-600 mb-1">Email</p>
+            <a href="mailto:rsidqir01@gmail.com" class="text-sm text-neutral-400 hover:text-white transition">rsidqir01@gmail.com</a>
+          </div>
+          <div>
+            <p class="tag text-neutral-600 mb-1">Phone</p>
+            <a href="tel:+6289617435097" class="text-sm text-neutral-400 hover:text-white transition">+62 896 1743 5097</a>
+          </div>
+          <div>
+            <p class="tag text-neutral-600 mb-1">Location</p>
+            <p class="text-sm text-neutral-400">Bandung, Indonesia</p>
+          </div>
+        </div>
+        <div class="flex gap-4 pt-2">
+          <a href="https://linkedin.com/in/raditya-syidqi-rusnandar" target="_blank" rel="noopener noreferrer" class="px-4 py-2 border border-neutral-700 text-neutral-400 text-xs font-medium hover:border-white hover:text-white transition">LinkedIn</a>
+          <a href="https://github.com/rdhtsdq" target="_blank" rel="noopener noreferrer" class="px-4 py-2 border border-neutral-700 text-neutral-400 text-xs font-medium hover:border-white hover:text-white transition">GitHub</a>
+          <a href="mailto:rsidqir01@gmail.com" class="px-4 py-2 border border-neutral-700 text-neutral-400 text-xs font-medium hover:border-white hover:text-white transition">Email</a>
+        </div>
+      </div>
+      <div class="flex items-center justify-center" data-aos="fade-left" data-aos-duration="800" data-aos-delay="300">
+        <div class="card p-8 text-center">
+          <p class="text-6xl font-bold text-white mb-2">RS</p>
+          <p class="tag text-neutral-600">RADITYA SYIDQI</p>
+          <div class="mt-6 pt-6 border-t border-neutral-800">
+            <p class="text-xs text-neutral-600">Available for opportunities</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-neutral-800 bg-neutral-950 py-8 px-6 text-center">
+    <p class="text-xs text-neutral-700">&copy; 2026 Raditya Syidqi Rusnandar. Built with craft.</p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true, offset: 60 });
+  </script>
+  <script>
+    (function() {
+      const container = document.getElementById('dotfield-bg');
+      if (!container) return;
+
+      const TWO_PI = Math.PI * 2;
+      const canvas = document.createElement('canvas');
+      container.appendChild(canvas);
+      const ctx = canvas.getContext('2d', { alpha: true });
+
+      const glowId = 'df-glow-' + Math.random().toString(36).slice(2, 9);
+      const svgNS = 'http://www.w3.org/2000/svg';
+      const svg = document.createElementNS(svgNS, 'svg');
+      const defs = document.createElementNS(svgNS, 'defs');
+      const grad = document.createElementNS(svgNS, 'radialGradient');
+      grad.setAttribute('id', glowId);
+      const stop1 = document.createElementNS(svgNS, 'stop');
+      stop1.setAttribute('offset', '0%');
+      stop1.setAttribute('stop-color', '#120F17');
+      const stop2 = document.createElementNS(svgNS, 'stop');
+      stop2.setAttribute('offset', '100%');
+      stop2.setAttribute('stop-color', 'transparent');
+      grad.appendChild(stop1);
+      grad.appendChild(stop2);
+      defs.appendChild(grad);
+      svg.appendChild(defs);
+      const glowCircle = document.createElementNS(svgNS, 'circle');
+      glowCircle.setAttribute('cx', '-9999');
+      glowCircle.setAttribute('cy', '-9999');
+      glowCircle.setAttribute('r', '160');
+      glowCircle.setAttribute('fill', 'url(#' + glowId + ')');
+      glowCircle.style.opacity = '0';
+      glowCircle.style.willChange = 'opacity';
+      svg.appendChild(glowCircle);
+      container.appendChild(svg);
+
+      var config = {
+        dotRadius: 3,
+        dotSpacing: 15,
+        cursorRadius: 400,
+        cursorForce: 0.1,
+        bulgeOnly: true,
+        bulgeStrength: 67,
+        glowRadius: 160,
+        sparkle: false,
+        waveAmplitude: 0,
+        gradientFrom: 'rgba(168, 85, 247, 0.35)',
+        gradientTo: 'rgba(180, 151, 207, 0.25)',
+        glowColor: '#193fa8',
+      };
+
+      var dots = [];
+      var mouse = { x: -9999, y: -9999, prevX: -9999, prevY: -9999, speed: 0 };
+      var size = { w: 0, h: 0, offsetX: 0, offsetY: 0 };
+      var glowOpacity = 0;
+      var engagement = 0;
+      var frameCount = 0;
+      var rafId = null;
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      function resize() {
+        var rect = container.parentElement.getBoundingClientRect();
+        var w = rect.width;
+        var h = rect.height;
+
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        size.w = w;
+        size.h = h;
+        size.offsetX = rect.left + window.scrollX;
+        size.offsetY = rect.top + window.scrollY;
+
+        buildDots(w, h);
+      }
+
+      function buildDots(w, h) {
+        var step = config.dotRadius + config.dotSpacing;
+        var cols = Math.floor(w / step);
+        var rows = Math.floor(h / step);
+        var padX = (w % step) / 2;
+        var padY = (h % step) / 2;
+        var arr = new Array(rows * cols);
+        var idx = 0;
+
+        for (var row = 0; row < rows; row++) {
+          for (var col = 0; col < cols; col++) {
+            var ax = padX + col * step + step / 2;
+            var ay = padY + row * step + step / 2;
+            arr[idx++] = { ax: ax, ay: ay, sx: ax, sy: ay, vx: 0, vy: 0, x: ax, y: ay };
+          }
+        }
+        dots = arr;
+      }
+
+      function onMouseMove(e) {
+        mouse.x = e.pageX - size.offsetX;
+        mouse.y = e.pageY - size.offsetY;
+      }
+
+      function updateSpeed() {
+        var dx = mouse.prevX - mouse.x;
+        var dy = mouse.prevY - mouse.y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        mouse.speed += (dist - mouse.speed) * 0.5;
+        if (mouse.speed < 0.001) mouse.speed = 0;
+        mouse.prevX = mouse.x;
+        mouse.prevY = mouse.y;
+      }
+
+      var speedInterval = setInterval(updateSpeed, 20);
+      var resizeTimer;
+
+      function tick() {
+        frameCount++;
+        var len = dots.length;
+        var t = frameCount * 0.02;
+
+        var targetEng = Math.min(mouse.speed / 5, 1);
+        engagement += (targetEng - engagement) * 0.06;
+        if (engagement < 0.001) engagement = 0;
+        var eng = engagement;
+
+        glowOpacity += (eng - glowOpacity) * 0.08;
+
+        glowCircle.setAttribute('cx', mouse.x);
+        glowCircle.setAttribute('cy', mouse.y);
+        glowCircle.style.opacity = glowOpacity;
+
+        ctx.clearRect(0, 0, size.w, size.h);
+
+        var grad = ctx.createLinearGradient(0, 0, size.w, size.h);
+        grad.addColorStop(0, config.gradientFrom);
+        grad.addColorStop(1, config.gradientTo);
+        ctx.fillStyle = grad;
+
+        var cr = config.cursorRadius;
+        var crSq = cr * cr;
+        var rad = config.dotRadius / 2;
+        var isBulge = config.bulgeOnly;
+
+        ctx.beginPath();
+
+        for (var i = 0; i < len; i++) {
+          var d = dots[i];
+          var dx = mouse.x - d.ax;
+          var dy = mouse.y - d.ay;
+          var distSq = dx * dx + dy * dy;
+
+          if (distSq < crSq && eng > 0.01) {
+            var dist = Math.sqrt(distSq);
+            if (isBulge) {
+              var pct = 1 - dist / cr;
+              var push = pct * pct * config.bulgeStrength * eng;
+              var angle = Math.atan2(dy, dx);
+              d.sx += (d.ax - Math.cos(angle) * push - d.sx) * 0.15;
+              d.sy += (d.ay - Math.sin(angle) * push - d.sy) * 0.15;
+            } else {
+              var angle = Math.atan2(dy, dx);
+              var move = (500 / dist) * (mouse.speed * config.cursorForce);
+              d.vx += Math.cos(angle) * -move;
+              d.vy += Math.sin(angle) * -move;
+            }
+          } else if (isBulge) {
+            d.sx += (d.ax - d.sx) * 0.1;
+            d.sy += (d.ay - d.sy) * 0.1;
+          }
+
+          if (!isBulge) {
+            d.vx *= 0.9;
+            d.vy *= 0.9;
+            d.x = d.ax + d.vx;
+            d.y = d.ay + d.vy;
+            d.sx += (d.x - d.sx) * 0.1;
+            d.sy += (d.y - d.sy) * 0.1;
+          }
+
+          var drawX = d.sx;
+          var drawY = d.sy;
+          if (config.waveAmplitude > 0) {
+            drawY += Math.sin(d.ax * 0.03 + t) * config.waveAmplitude;
+            drawX += Math.cos(d.ay * 0.03 + t * 0.7) * config.waveAmplitude * 0.5;
+          }
+
+          if (config.sparkle) {
+            var hash = ((i * 2654435761) ^ (frameCount >> 3)) >>> 0;
+            if ((hash % 100) < 3) {
+              ctx.moveTo(drawX + rad * 1.8, drawY);
+              ctx.arc(drawX, drawY, rad * 1.8, 0, TWO_PI);
+            } else {
+              ctx.moveTo(drawX + rad, drawY);
+              ctx.arc(drawX, drawY, rad, 0, TWO_PI);
+            }
+          } else {
+            ctx.moveTo(drawX + rad, drawY);
+            ctx.arc(drawX, drawY, rad, 0, TWO_PI);
+          }
+        }
+
+        ctx.fill();
+        rafId = requestAnimationFrame(tick);
+      }
+
+      function onResize() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(resize, 100);
+      }
+
+      resize();
+      window.addEventListener('resize', onResize);
+      window.addEventListener('mousemove', onMouseMove, { passive: true });
+      rafId = requestAnimationFrame(tick);
+    })();
+  </script>
+</body>
+</html>
